@@ -82,12 +82,8 @@ export default function EmployeeForm() {
             onChange={handleInputChange}
           />
           <div>
-            <Controls.Button
-              variant="contained"
-              color="primary"
-              size="large"
-              text="submit"
-            />
+            <Controls.Button type="submit" text="Submit" />
+            <Controls.Button type="submit" text="Reset" color="default" />
           </div>
         </Grid>
       </Grid>
