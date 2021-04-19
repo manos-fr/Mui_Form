@@ -54,7 +54,10 @@ export default function EmployeeForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) window.alert("testing...");
+    if (validate()) {
+      employeeService.insertEmployee(values);
+      resetForm();
+    }
   };
 
   return (
