@@ -81,6 +81,14 @@ export default function EmployeeForm() {
             value={values.isPermanent}
             onChange={handleInputChange}
           />
+          <div>
+            <Controls.Button
+              variant="contained"
+              color="primary"
+              size="large"
+              text="submit"
+            />
+          </div>
         </Grid>
       </Grid>
     </Form>
