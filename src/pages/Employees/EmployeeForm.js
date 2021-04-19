@@ -36,9 +36,14 @@ export default function EmployeeForm() {
 
     return Object.values(temp).every((x) => x == "");
   };
-  const { values, setValues, handleInputChange, errors, setErrors } = UseForm(
-    initialFValues
-  );
+  const {
+    values,
+    setValues,
+    handleInputChange,
+    errors,
+    setErrors,
+    resetForm,
+  } = UseForm(initialFValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,7 +112,7 @@ export default function EmployeeForm() {
           />
           <div>
             <Controls.Button type="submit" text="Submit" />
-            <Controls.Button type="submit" text="Reset" color="default" />
+            <Controls.Button text="Reset" color="default" onClick={resetForm} />
           </div>
         </Grid>
       </Grid>
