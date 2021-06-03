@@ -1,3 +1,10 @@
+### USAGE
+
+- Download or clone the repo
+- Go into the directory
+- You should already have Node.js installed
+- Install the code dependencies with npm install command
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
