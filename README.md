@@ -1,9 +1,14 @@
-### USAGE
+# USAGE
 
 - Download or clone the repo
 - Go into the directory
 - You should already have Node.js installed
 - Install the code dependencies with npm install command
+
+### About
+
+Implementation of a user form for websites with reusable & extendable components madewith ReactJS and MaterialUI framework. All common input controls like input, text box,radio button, checkbox, dropdown list, date picker, popup dialog, table sorting etc.
+Technologies: **ReactJS, MaterialUI**
 
 # Getting Started with Create React App
 
