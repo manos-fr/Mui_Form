@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
   sideMenu: {
@@ -17,5 +18,9 @@ const useStyles = makeStyles({
 export default function SideMenu() {
   const classes = useStyles();
 
-  return <div className={classes.sideMenu}></div>;
+  return (
+    <Box display={{ xs: "none", sm: "block" }}>
+      <div className={classes.sideMenu}></div>;
+    </Box>
+  );
 }
