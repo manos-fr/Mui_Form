@@ -54,15 +54,19 @@ export default function useTable(records, headCells) {
               key={headCell.id}
               sortDirection={orderBy === headCell.id ? order : false}
             >
-              <TableSortLabel
-                active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : "asc"}
-                onClick={() => {
-                  handleSortRequest(headCell.id);
-                }}
-              >
-                {headCell.label}
-              </TableSortLabel>
+              {headCell.disableSorting ? (
+                headCell.label
+              ) : (
+                <TableSortLabel
+                  active={orderBy === headCell.id}
+                  direction={orderBy === headCell.id ? order : "asc"}
+                  onClick={() => {
+                    handleSortRequest(headCell.id);
+                  }}
+                >
+                  {headCell.label}
+                </TableSortLabel>
+              )}
             </TableCell>
           ))}
         </TableRow>
@@ -116,6 +120,13 @@ export default function useTable(records, headCells) {
     }
     return 0;
   }
+
+  //   const recordsAfterPagingAndSorting = () => {
+  //     return stableSort(
+  //       filterFn.fn(records),
+  //       getComparator(order, orderBy)
+  //     ).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
+  //   };
 
   const recordsAfterPagingAndSorting = () => {
     return stableSort(records, getComparator(order, orderBy)).slice(

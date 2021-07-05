@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
 import PageHeader from "../../components/PageHeader";
 import PeopleIcon from "@material-ui/icons/People";
-import { Paper, makeStyles, TableBody } from "@material-ui/core";
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  Toolbar,
+  InputAdornment,
+  AddIcon,
+  Search,
+} from "@material-ui/core";
 import useTable from "../../components/useTable";
 import * as employeeService from "../../services/employeeService";
 import { TableRow, TableCell } from "@material-ui/core";
+import Controls from "../../components/controls/Controls";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -24,9 +33,30 @@ const headCells = [
 export default function Employees() {
   const classes = useStyles();
   const [records, setRecords] = useState(employeeService.getAllEmployees);
+  const [filterFn, setFilterFn] = useState({
+    fn: (items) => {
+      return items;
+    },
+  });
 
   const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
-    useTable(records, headCells);
+    useTable(records, headCells, filterFn);
+
+  const [recordForEdit, setRecordForEdit] = useState(null);
+  const [openPopup, setOpenPopup] = useState(false);
+
+  const handleSearch = (e) => {
+    let target = e.target;
+    setFilterFn({
+      fn: (items) => {
+        if (target.value == "") return items;
+        else
+          return items.filter((x) =>
+            x.fullName.toLowerCase().includes(target.value)
+          );
+      },
+    });
+  };
 
   return (
     <>
@@ -37,6 +67,30 @@ export default function Employees() {
       />
       <Paper className={classes.pageContent}>
         {/* <EmployeeForm /> */}
+        <Toolbar>
+          <Controls.Input
+            label="Search Employees"
+            className={classes.searchInput}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+            onChange={handleSearch}
+          />
+          <Controls.Button
+            text="Add New"
+            variant="outlined"
+            startIcon={<AddIcon />}
+            className={classes.newButton}
+            onClick={() => {
+              setOpenPopup(true);
+              setRecordForEdit(null);
+            }}
+          />
+        </Toolbar>
         <TblContainer>
           <TblHead />
           <TableBody>
