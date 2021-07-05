@@ -25,7 +25,8 @@ export default function Employees() {
   const classes = useStyles();
   const [records, setRecords] = useState(employeeService.getAllEmployees);
 
-  const { TblContainer, TblHead } = useTable(records, headCells);
+  const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
+    useTable(records, headCells);
 
   return (
     <>
@@ -39,7 +40,7 @@ export default function Employees() {
         <TblContainer>
           <TblHead />
           <TableBody>
-            {records.map((item) => (
+            {recordsAfterPagingAndSorting().map((item) => (
               <TableRow key={item.id}>
                 <TableCell>{item.fullName}</TableCell>
                 <TableCell>{item.email}</TableCell>
@@ -49,6 +50,7 @@ export default function Employees() {
             ))}
           </TableBody>
         </TblContainer>
+        <TblPagination />
       </Paper>
     </>
   );
