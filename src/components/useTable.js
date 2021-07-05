@@ -1,4 +1,5 @@
 import { TablePagination } from "@material-ui/core";
+import { TableSortLabel } from "@material-ui/core";
 import {
   Table,
   TableHead,
@@ -6,6 +7,7 @@ import {
   TableCell,
   makeStyles,
 } from "@material-ui/core";
+import { SettingsBackupRestoreRounded } from "@material-ui/icons";
 import { parseISOWithOptions } from "date-fns/fp";
 import React, { useState } from "react";
 
@@ -32,17 +34,35 @@ export default function useTable(records, headCells) {
   const pages = [5, 10, 25];
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [order, setOrder] = useState();
+  const [orderBy, setOrderBy] = useState();
 
   const TblContainer = (props) => (
     <Table className={classes.table}>{props.children}</Table>
   );
 
   const TblHead = (props) => {
+    const handleSortRequest = (cellId) => {
+      const isAsc = orderBy === cellId && order === "asc";
+      setOrder(isAsc ? "des" : "asc");
+      setOrderBy(cellId);
+    };
+
     return (
       <TableHead>
         <TableRow>
           {headCells.map((headCell) => (
-            <TableCell key={headCell.id}>{headCell.label}</TableCell>
+            <TableCell key={headCell.id}>
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : "asc"}
+                onClick={() => {
+                  handleSortRequest(headCell.id);
+                }}
+              >
+                {headCell.label}
+              </TableSortLabel>
+            </TableCell>
           ))}
         </TableRow>
       </TableHead>
