@@ -8,12 +8,13 @@ import {
   TableBody,
   Toolbar,
   InputAdornment,
-  Search,
 } from "@material-ui/core";
 import useTable from "../../components/useTable";
 import * as employeeService from "../../services/employeeService";
 import { TableRow, TableCell } from "@material-ui/core";
 import Controls from "../../components/controls/Controls";
+import { Search } from "@material-ui/icons";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
