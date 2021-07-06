@@ -8,7 +8,6 @@ import {
   TableBody,
   Toolbar,
   InputAdornment,
-  AddIcon,
   Search,
 } from "@material-ui/core";
 import useTable from "../../components/useTable";
