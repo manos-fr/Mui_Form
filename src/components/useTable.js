@@ -8,6 +8,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import "../pages/Employees/Employees";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function useTable(records, headCells) {
+export default function useTable(records, headCells, filterFn) {
   const classes = useStyles();
   const pages = [5, 10, 25];
   const [page, setPage] = useState(0);
@@ -42,7 +43,7 @@ export default function useTable(records, headCells) {
   const TblHead = (props) => {
     const handleSortRequest = (cellId) => {
       const isAsc = orderBy === cellId && order === "asc";
-      setOrder(isAsc ? "des" : "asc");
+      setOrder(isAsc ? "desc" : "asc");
       setOrderBy(cellId);
     };
 
@@ -129,10 +130,10 @@ export default function useTable(records, headCells) {
   //   };
 
   const recordsAfterPagingAndSorting = () => {
-    return stableSort(records, getComparator(order, orderBy)).slice(
-      page * rowsPerPage,
-      (page + 1) * rowsPerPage
-    );
+    return stableSort(
+      filterFn.fn(records),
+      getComparator(order, orderBy)
+    ).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
   };
 
   return {

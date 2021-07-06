@@ -21,6 +21,7 @@ export default function Button(props) {
       onClick={onClick}
       {...other}
       classes={{ root: classes.root, label: classes.label }}
+      // className={(classes.root, classes.label)}
     >
       {text}
     </MuiButton>

@@ -1,5 +1,5 @@
 import {
-  createMuiTheme,
+  createTheme,
   CssBaseline,
   formatMs,
   makeStyles,
@@ -12,7 +12,7 @@ import Header from "../components/Header";
 import PageHeader from "../components/PageHeader";
 import Employees from "../pages/Employees/Employees";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#333996",

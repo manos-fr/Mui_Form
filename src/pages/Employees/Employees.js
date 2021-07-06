@@ -66,7 +66,7 @@ export default function Employees() {
         icon={<PeopleIcon fontSize="large" />}
       />
       <Paper className={classes.pageContent}>
-        {/* <EmployeeForm /> */}
+        <EmployeeForm />
         <Toolbar>
           <Controls.Input
             label="Search Employees"
