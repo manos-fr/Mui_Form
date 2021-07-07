@@ -15,6 +15,8 @@ import { TableRow, TableCell } from "@material-ui/core";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
+import EditOutlinedIcon from "@material-ui/icons/Edit";
+import CloseIcon from "@material-ui/icons/Close";
 import Popup from "../../components/Popup";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,23 +38,21 @@ const headCells = [
   { id: "email", label: "Email Address" },
   { id: "mobile", label: "Mobile Number" },
   { id: "department", label: "Department" },
+  { id: "actions", label: "Actions", disableSorting: true },
 ];
 
 export default function Employees() {
   const classes = useStyles();
   const [records, setRecords] = useState(employeeService.getAllEmployees);
+  const [recordForEdit, setRecordForEdit] = useState(null);
+  const [openPopup, setOpenPopup] = useState(false);
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
     },
   });
-
   const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
     useTable(records, headCells, filterFn);
-
-  const [recordForEdit, setRecordForEdit] = useState(null);
-  const [openPopup, setOpenPopup] = useState(false);
-
   const handleSearch = (e) => {
     let target = e.target;
     setFilterFn({
@@ -64,6 +64,25 @@ export default function Employees() {
           );
       },
     });
+  };
+
+  const addOrEdit = (employee, resetForm) => {
+    if (employee.id == 0) employeeService.insertEmployee(employee);
+    else employeeService.updateEmployee(employee);
+    resetForm();
+    setRecordForEdit(null);
+    setOpenPopup(false);
+    setRecords(employeeService.getAllEmployees());
+    //   setNotify({
+    //     isOpen: true,
+    //     message: "Submitted Successfully",
+    //     type: "success",
+    //   });
+  };
+
+  const openInPopup = (item) => {
+    setRecordForEdit(item);
+    setOpenPopup(true);
   };
 
   return (
@@ -107,6 +126,19 @@ export default function Employees() {
                 <TableCell>{item.email}</TableCell>
                 <TableCell>{item.mobile}</TableCell>
                 <TableCell>{item.department}</TableCell>
+                <TableCell>
+                  <Controls.ActionButton
+                    color="primary"
+                    onClick={() => {
+                      openInPopup(item);
+                    }}
+                  >
+                    <EditOutlinedIcon fontSize="small" />
+                  </Controls.ActionButton>
+                  <Controls.ActionButton color="secondary">
+                    <CloseIcon fontSize="small" />
+                  </Controls.ActionButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -118,7 +150,7 @@ export default function Employees() {
         setOpenPopup={setOpenPopup}
         title="Employee Form"
       >
-        <EmployeeForm />
+        <EmployeeForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
       </Popup>
     </>
   );
