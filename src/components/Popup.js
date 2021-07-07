@@ -30,7 +30,12 @@ export default function Popup(props) {
           <Typography style={{ flexGrow: 1 }} variant="h6" component="div">
             {title}
           </Typography>
-          <Controls.ActionButton color="secondary" text="X">
+          <Controls.ActionButton
+            color="secondary"
+            onClick={() => {
+              setOpenPopup(false);
+            }}
+          >
             <CloseIcon />
           </Controls.ActionButton>
         </div>
