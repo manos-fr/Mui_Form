@@ -15,11 +15,19 @@ import { TableRow, TableCell } from "@material-ui/core";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
+import Popup from "../../components/Popup";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     margin: theme.spacing(5),
     padding: theme.spacing(3),
+  },
+  searchInput: {
+    width: "75%",
+  },
+  newButton: {
+    position: "absolut",
+    left: "20px",
   },
 }));
 
@@ -66,7 +74,6 @@ export default function Employees() {
         icon={<PeopleIcon fontSize="large" />}
       />
       <Paper className={classes.pageContent}>
-        <EmployeeForm />
         <Toolbar>
           <Controls.Input
             label="Search Employees"
@@ -106,6 +113,13 @@ export default function Employees() {
         </TblContainer>
         <TblPagination />
       </Paper>
+      <Popup
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+        title="Employee Form"
+      >
+        <EmployeeForm />
+      </Popup>
     </>
   );
 }
