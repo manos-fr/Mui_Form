@@ -1,6 +1,11 @@
 # CRUD Form with ReactJS and MaterialUI
 
-### Docker
+### About
+
+Implementation of a user form for websites with reusable & extendable components madewith ReactJS and MaterialUI framework. All common input controls like input, text box,radio button, checkbox, dropdown list, date picker, popup dialog, table sorting etc.
+Technologies: **ReactJS, MaterialUI**
+
+### Docker install
 
 - Go into the directory (must be named "mui_system")
 - Install Docker Engine & Docker Compose
@@ -13,13 +18,16 @@
   $ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
+### Run with Docker
+
 ```
 - Start the Docker daemon (if needed)
   $ sudo systemctl start docker. or sudo service docker start
 
-docker-compose up --build (to run)
+docker-compose up -d --build (to run)
 
 docker-compose down (to kill and stop docker images)
+```
 
 # OR
 
@@ -27,11 +35,6 @@ docker-compose down (to kill and stop docker images)
 - Go into the directory
 - You should already have Node.js installed
 - Install the code dependencies with npm install command
-
-### About
-
-Implementation of a user form for websites with reusable & extendable components madewith ReactJS and MaterialUI framework. All common input controls like input, text box,radio button, checkbox, dropdown list, date picker, popup dialog, table sorting etc.
-Technologies: **ReactJS, MaterialUI**
 
 # Getting Started with Create React App
 
@@ -103,4 +106,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-```
