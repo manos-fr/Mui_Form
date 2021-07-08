@@ -22,10 +22,8 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-$ sudo chmod +x /usr/local/bin/docker-compose
-
 ```
-
+$ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 ### Run with Docker
@@ -33,18 +31,14 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 - Start the Docker daemon (if needed)
 
 ```
-
 sudo systemctl start docker or sudo service docker start
-
 ```
 
 ```
 docker-compose up -d --build (to run)
-
 ```
 
 ```
-
 docker-compose down (to kill and stop docker images)
 ```
 
