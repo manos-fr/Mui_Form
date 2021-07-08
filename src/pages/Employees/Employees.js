@@ -8,6 +8,8 @@ import {
   TableBody,
   Toolbar,
   InputAdornment,
+  Grid,
+  Box,
 } from "@material-ui/core";
 import useTable from "../../components/useTable";
 import * as employeeService from "../../services/employeeService";
@@ -118,7 +120,9 @@ export default function Employees() {
         subtitle="Form design with validation"
         icon={<PeopleIcon fontSize="large" />}
       />
+      {/* <Box style={{ display: "flex" }}> */}
       <Paper className={classes.pageContent}>
+        {/* <Grid container item minWidth="lg"> */}
         <Toolbar>
           <Controls.Input
             label="Search Employees"
@@ -166,10 +170,12 @@ export default function Employees() {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: "Are you sure?",
-                        subTitle: "You can't undo",
+                        title: "Are you sure you want to delete this record?",
+                        subTitle: "You can't undo this action",
+                        onConfirm: () => {
+                          onDelete(item.id);
+                        },
                       });
-                      // onDelete(item.id);
                     }}
                   >
                     <CloseIcon fontSize="small" />
@@ -180,7 +186,9 @@ export default function Employees() {
           </TableBody>
         </TblContainer>
         <TblPagination />
+        {/* </Grid> */}
       </Paper>
+      {/* </Box> */}
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

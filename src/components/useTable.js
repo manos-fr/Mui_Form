@@ -6,6 +6,7 @@ import {
   TableRow,
   TableCell,
   makeStyles,
+  Grid,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import "../pages/Employees/Employees";
@@ -121,14 +122,6 @@ export default function useTable(records, headCells, filterFn) {
     }
     return 0;
   }
-
-  //   const recordsAfterPagingAndSorting = () => {
-  //     return stableSort(
-  //       filterFn.fn(records),
-  //       getComparator(order, orderBy)
-  //     ).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
-  //   };
-
   const recordsAfterPagingAndSorting = () => {
     return stableSort(
       filterFn.fn(records),
