@@ -18,6 +18,7 @@ import AddIcon from "@material-ui/icons/Add";
 import EditOutlinedIcon from "@material-ui/icons/Edit";
 import CloseIcon from "@material-ui/icons/Close";
 import Popup from "../../components/Popup";
+import Notification from "../../components/Notification";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -46,6 +47,11 @@ export default function Employees() {
   const [records, setRecords] = useState(employeeService.getAllEmployees);
   const [recordForEdit, setRecordForEdit] = useState(null);
   const [openPopup, setOpenPopup] = useState(false);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
       return items;
@@ -73,11 +79,11 @@ export default function Employees() {
     setRecordForEdit(null);
     setOpenPopup(false);
     setRecords(employeeService.getAllEmployees());
-    //   setNotify({
-    //     isOpen: true,
-    //     message: "Submitted Successfully",
-    //     type: "success",
-    //   });
+    setNotify({
+      isOpen: true,
+      message: "Submitted Successfully",
+      type: "success",
+    });
   };
 
   const openInPopup = (item) => {
@@ -152,6 +158,7 @@ export default function Employees() {
       >
         <EmployeeForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
       </Popup>
+      <Notification notify={notify} setNotify={setNotify} />
     </>
   );
 }
