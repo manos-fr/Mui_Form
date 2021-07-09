@@ -37,6 +37,7 @@ sudo systemctl start docker or sudo service docker start
 ```
 docker-compose up -d --build (to run)
 ```
+Running in localhost:3001
 
 ```
 docker-compose down (to kill and stop docker images)
